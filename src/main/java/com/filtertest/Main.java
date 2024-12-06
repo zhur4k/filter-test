@@ -4,12 +4,15 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(filter(new Integer[]{1, 2, 3, 4, 5}, o -> ((Integer) o) - 1)));
+        Integer[] results = filter(new Integer[]{1, 2, 3, 4, 5}, o -> o - 1);
+        System.out.println(
+                Arrays.toString(results)
+        );
     }
 
-    private static Object [] filter(Object [] objs, Filter filter) {
+    private static <T> T[] filter(T[] objs, Filter<T> filter) {
         return Arrays.stream(objs)
                 .map(filter::apply)
-                .toArray();
+                .toArray(size -> Arrays.copyOf(objs, size));
     }
 }

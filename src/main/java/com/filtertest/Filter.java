@@ -1,5 +1,5 @@
 package com.filtertest;
 
-public interface Filter {
-    Object apply(Object o);
+public interface Filter<T> {
+    T apply(T o);
 }
